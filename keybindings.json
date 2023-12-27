@@ -84,5 +84,10 @@
   {
     "key": "shift+alt+up",
     "command": "editor.action.copyLinesUpAction"
+  },
+  // close editor
+  {
+    "key": "ctrl+w",
+    "command": "workbench.action.closeActiveEditor"
   }
 ]
