@@ -1,5 +1,197 @@
-// Place your key bindings in this file to override the defaults
 [
+  // Trigger vspacecode in empty editor group
+  {
+    "key": "space",
+    "command": "vspacecode.space",
+    "when": "activeEditorGroupEmpty && focusedView == '' && !whichkeyActive && !inputFocus"
+  },
+  // Trigger vspacecode when sidebar is in focus
+  {
+    "key": "space",
+    "command": "vspacecode.space",
+    "when": "sideBarFocus && !inputFocus && !whichkeyActive"
+  },
+  // Keybindings required for edamagit
+  // https://github.com/kahole/edamagit#vim-support-vscodevim
+  // Cannot be added to package.json because keybinding replacements
+  {
+    "key": "tab",
+    "command": "extension.vim_tab",
+    "when": "editorTextFocus && vim.active && !inDebugRepl && vim.mode != 'Insert' && editorLangId != 'magit'"
+  },
+  {
+    "key": "tab",
+    "command": "-extension.vim_tab",
+    "when": "editorTextFocus && vim.active && !inDebugRepl && vim.mode != 'Insert'"
+  },
+  {
+    "key": "x",
+    "command": "magit.discard-at-point",
+    "when": "editorTextFocus && editorLangId == 'magit' && vim.mode =~ /^(?!SearchInProgressMode|CommandlineInProgress).*$/"
+  },
+  {
+    "key": "k",
+    "command": "-magit.discard-at-point"
+  },
+  {
+    "key": "-",
+    "command": "magit.reverse-at-point",
+    "when": "editorTextFocus && editorLangId == 'magit' && vim.mode =~ /^(?!SearchInProgressMode|CommandlineInProgress).*$/"
+  },
+  {
+    "key": "v",
+    "command": "-magit.reverse-at-point"
+  },
+  {
+    "key": "shift+-",
+    "command": "magit.reverting",
+    "when": "editorTextFocus && editorLangId == 'magit' && vim.mode =~ /^(?!SearchInProgressMode|CommandlineInProgress).*$/"
+  },
+  {
+    "key": "shift+v",
+    "command": "-magit.reverting"
+  },
+  {
+    "key": "shift+o",
+    "command": "magit.resetting",
+    "when": "editorTextFocus && editorLangId == 'magit' && vim.mode =~ /^(?!SearchInProgressMode|CommandlineInProgress).*$/"
+  },
+  {
+    "key": "shift+x",
+    "command": "-magit.resetting"
+  },
+  {
+    "key": "x",
+    "command": "-magit.reset-mixed"
+  },
+  {
+    "key": "ctrl+u x",
+    "command": "-magit.reset-hard"
+  },
+  // Extra ref menu support for edamagit with the key "y"
+  // Cannot be added to package.json because keybinding replacements
+  {
+    "key": "y",
+    "command": "-magit.show-refs"
+  },
+  {
+    "key": "y",
+    "command": "vspacecode.showMagitRefMenu",
+    "when": "editorTextFocus && editorLangId == 'magit' && vim.mode == 'Normal'"
+  },
+  // Extra refresh menu support for edamagit with the key "g"
+  // Cannot be added to package.json because keybinding replacements
+  {
+    "key": "g",
+    "command": "-magit.refresh",
+    "when": "editorTextFocus && editorLangId == 'magit' && vim.mode =~ /^(?!SearchInProgressMode|CommandlineInProgress).*$/"
+  },
+  {
+    "key": "g",
+    "command": "vspacecode.showMagitRefreshMenu",
+    "when": "editorTextFocus && editorLangId == 'magit' && vim.mode =~ /^(?!SearchInProgressMode|CommandlineInProgress).*$/"
+  },
+  // Easy navigation in quick open/QuickPick
+  {
+    "key": "ctrl+j",
+    "command": "workbench.action.quickOpenSelectNext",
+    "when": "inQuickOpen"
+  },
+  {
+    "key": "ctrl+k",
+    "command": "workbench.action.quickOpenSelectPrevious",
+    "when": "inQuickOpen"
+  },
+  // Easy navigation in suggestion/intellisense
+  // Cannot be added to package.json because of conflict with vim's default bindings
+  {
+    "key": "ctrl+j",
+    "command": "selectNextSuggestion",
+    "when": "suggestWidgetMultipleSuggestions && suggestWidgetVisible && textInputFocus"
+  },
+  {
+    "key": "ctrl+k",
+    "command": "selectPrevSuggestion",
+    "when": "suggestWidgetMultipleSuggestions && suggestWidgetVisible && textInputFocus"
+  },
+  {
+    "key": "ctrl+l",
+    "command": "acceptSelectedSuggestion",
+    "when": "suggestWidgetMultipleSuggestions && suggestWidgetVisible && textInputFocus"
+  },
+  // Easy navigation in parameter hint (i.e. traverse the hints when there's multiple overload for one method)
+  // Cannot be added to package.json because of conflict with vim's default bindings
+  {
+    "key": "ctrl+j",
+    "command": "showNextParameterHint",
+    "when": "editorFocus && parameterHintsMultipleSignatures && parameterHintsVisible"
+  },
+  {
+    "key": "ctrl+k",
+    "command": "showPrevParameterHint",
+    "when": "editorFocus && parameterHintsMultipleSignatures && parameterHintsVisible"
+  },
+  // Easy navigation in code action
+  {
+    "key": "ctrl+j",
+    "command": "selectNextCodeAction",
+    "when": "codeActionMenuVisible"
+  },
+  {
+    "key": "ctrl+k",
+    "command": "selectPrevCodeAction",
+    "when": "codeActionMenuVisible"
+  },
+  {
+    "key": "ctrl+l",
+    "command": "acceptSelectedCodeAction",
+    "when": "codeActionMenuVisible"
+  },
+  // Add ctrl+h/l to navigate in file browser
+  {
+    "key": "ctrl+h",
+    "command": "file-browser.stepOut",
+    "when": "inFileBrowser"
+  },
+  {
+    "key": "ctrl+l",
+    "command": "file-browser.stepIn",
+    "when": "inFileBrowser"
+  },
+  // custom keybinding pojok code
+  // space            -> whichkey
+  // ctrl + n         -> new file | focus explorer
+  // ctrl + shift + n -> new folder | focus explorer
+  // CTRL + 1         -> focus editor
+  // CTRL + 0         -> focus explorer
+  // CTRL + `         -> focus terminal
+  // ctrl + arrow     -> navigate focus
+  // ctrl + j         -> toggle panel
+  // ctrl + b         -> toggle sidebar
+  // ctrl + a         -> select all text
+  // ctrl + c         -> copy
+  // ctrl + v         -> paste
+  // ctrl + x         -> cut
+  // ctrl + z         -> undo
+  // ctrl + y         -> redo
+  // ctrl + s         -> save
+  // ctrl + shift + z -> redo
+  // ctrl + ]         -> indent line
+  // ctrl + [         -> unindent line
+  // shift + alt +up/down -> duplicate line
+  // alt + up/down    -> move line
+  // ctrl + w q       -> close editor
+  // ctrl + shift + t -> split terminal | fokus trminal
+  // ctrl + shift + k -> close terminal | focus terminal
+  // alt + arraow     -> navigate focus terminal | focus trminal
+  // ctrl + shift + m -> decrease size panel atau increase sidebar | focus panel
+  // ctrl + shift + p -> increase size panel atau decrease sidebar | focus panel
+  // ctrl + PageUp/Down -> next/previous tab
+  {
+    "key": "space",
+    "command": "whichkey.show",
+    "when": "sideBarFocus && !inputFocus && !whichkeyActive"
+  },
   {
     "key": "ctrl+n",
     "command": "explorer.newFile",
@@ -87,7 +279,76 @@
   },
   // close editor
   {
-    "key": "ctrl+w",
+    "key": "ctrl+w q",
     "command": "workbench.action.closeActiveEditor"
+  },
+  // resize panel
+  /* {
+  "key": "ctrl+shift+o",
+  "command": "workbench.action.decreaseViewSize"
+},
+{
+  "key": "ctrl+shift+i",
+  "command": "workbench.action.increaseViewSize"
+}, */
+  // split terminal
+  {
+    "key": "ctrl+shift+t",
+    "command": "workbench.action.terminal.split",
+    "when": "terminalFocus"
+  },
+  // kill terminal focus
+  {
+    "key": "ctrl+shift+k",
+    "command": "workbench.action.terminal.kill",
+    "when": "terminalFocus"
+  },
+  // navigate split terminal
+  // default alt + arrow key
+  // increase height panel if terminal is open and terminal is focus
+  {
+    "key": "ctrl+shift+m",
+    "command": "workbench.action.increaseViewHeight",
+    "when": "terminalIsOpen && terminalFocus"
+  },
+  {
+    "key": "ctrl+shift+p",
+    "command": "workbench.action.decreaseViewHeight",
+    "when": "terminalIsOpen && terminalFocus"
+  },
+  // increase width if sidebar is visible and sidebar is focus
+  {
+    "key": "ctrl+shift+m",
+    "command": "workbench.action.increaseViewWidth",
+    "when": "sideBarVisible && sideBarFocus"
+  },
+  {
+    "key": "ctrl+shift+p",
+    "command": "workbench.action.decreaseViewWidth",
+    "when": "sideBarVisible && sideBarFocus"
+  },
+  // cut line
+  {
+    "key": "ctrl+x",
+    "command": "editor.action.clipboardCutAction",
+    "when": "editorTextFocus"
+  },
+  // open keyboard shortcuts
+  {
+    "key": "ctrl+k ctrl+s",
+    "command": "workbench.action.openGlobalKeybindings"
+  },
+  // pilih tab kiri dan kanan CTRL + PageUp / PageDown
+  // find word in editor
+  {
+    "key": "ctrl+f",
+    "command": "actions.find",
+    "when": "editorFocus || editorIsOpen"
+  },
+  // find and replace in editor
+  {
+    "key": "ctrl+h",
+    "command": "actions.findWithReplace",
+    "when": "editorFocus || editorIsOpen"
   }
 ]
